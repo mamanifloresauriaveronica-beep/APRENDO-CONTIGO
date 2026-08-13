@@ -1,0 +1,141 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Arial', sans-serif;
+}
+
+body {
+  margin: 0;
+  background-color: #F8E2E8; /* Rosa pastel suave */
+  color: #5A5A5A; /* Gris oscuro suave */
+  line-height: 1.6;
+}
+
+header {
+  background: linear-gradient(135deg, #BFD7EA, #E8E2F8); /* Azul a lila pastel */
+  color: #4A4A4A;
+  text-align: center;
+  padding: 1.5rem;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+main {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+section {
+  background: white;
+  border-radius: 16px;
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+  border: 2px solid #E8E2F8;
+}
+
+h2 {
+  color: #6B7280;
+  text-align: center;
+  margin-top: 0;
+}
+
+.oculta {
+  display: none;
+}
+
+input[type="file"] {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border: 2px solid #E8E2F8;
+  border-radius: 10px;
+  background: #F9F5FC;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 1rem;
+  background-color: #BFD7EA; /* Azul pastel */
+  color: #4A4A4A;
+  border: none;
+  border-radius: 12px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+button:hover {
+  background-color: #A4C8E0;
+  transform: scale(1.02);
+}
+
+.opcion {
+  background: #F9F5FC;
+  border: 2px solid #E8E2F8;
+  padding: 0.9rem;
+  margin: 0.7rem 0;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.opcion:hover {
+  border-color: #BFD7EA;
+  background: #F0F4F8;
+}
+
+.opcion.correcta {
+  background-color: #D4EDDA; /* Verde pastel */
+  border-color: #B7E1C1;
+  color: #3A6B3F;
+}
+
+.opcion.incorrecta {
+  background-color: #F8D7DA; /* Rosa pastel */
+  border-color: #F2C4C9;
+  color: #8C4B53;
+}
+
+#pregunta-texto {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+  color: #5A5A5A;
+  padding: 1rem;
+  background: #F9F5FC;
+  border-radius: 12px;
+}
+
+#contenido-diagnostico ul {
+  padding-left: 1.2rem;
+}
+
+#contenido-diagnostico li {
+  margin-bottom: 0.5rem;
+  padding: 0.4rem;
+  border-radius: 6px;
+}
+
+#mensaje-archivo {
+  margin-top: 1rem;
+  padding: 0.8rem;
+  background: #FFF3CD; /* Amarillo pastel */
+  border-radius: 8px;
+  color: #7A6A3C;
+}
+
+footer {
+  text-align: center;
+  padding: 1rem;
+  color: #888;
+  font-size: 0.9rem;
+}

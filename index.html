@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APRENDO CONTIGO — Examen Personalizado</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <h1>📚 APRENDO CONTIGO</h1>
+    <p>Sube tu documento y obtén un examen adaptado + diagnóstico</p>
+  </header>
+
+  <main>
+    <!-- Pantalla 1: Subir documento -->
+    <section id="subir-documento">
+      <h2>📤 Sube tu archivo de estudio</h2>
+      <p>Formatos permitidos: PDF, DOCX, TXT</p>
+      <input type="file" id="archivo" accept=".pdf,.docx,.txt">
+      <button id="btn-subir">Analizar y preparar examen</button>
+      <div id="mensaje-archivo"></div>
+    </section>
+
+    <!-- Pantalla 2: Examen -->
+    <section id="zona-examen" class="oculta">
+      <h2>📝 Examen personalizado</h2>
+      <div id="pregunta-texto"></div>
+      <div id="opciones"></div>
+      <button id="btn-siguiente" class="oculta">Siguiente</button>
+    </section>
+
+    <!-- Pantalla 3: Diagnóstico -->
+    <section id="zona-diagnostico" class="oculta">
+      <h2>📊 Tu diagnóstico de estudio</h2>
+      <div id="contenido-diagnostico"></div>
+      <button id="btn-reiniciar">Hacer otro examen</button>
+    </section>
+  </main>
+
+  <footer>
+    <p>Proyecto Innovador — Erika Huallpa Garisto</p>
+  </footer>
+
+  <!-- Librerías para leer PDF y DOCX -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
