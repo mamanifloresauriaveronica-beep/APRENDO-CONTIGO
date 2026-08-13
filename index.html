@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprendo Contigo — Prepara tus exámenes</title>
+
+  <!-- Librerías para leer archivos PDF y DOCX → NO TOCAR -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+
+  <!-- Tu estilo -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>📚 Aprendo Contigo</h1>
+    <p>Plataforma interactiva para preparar tus exámenes</p>
+  </header>
+
+  <main>
+    <!-- Sección para subir archivo -->
+    <section id="subir-documento">
+      <h2>Sube tus apuntes</h2>
+      <input type="file" id="archivo" accept=".txt,.pdf,.docx">
+      <button id="btn-subir">📄 Analizar y preparar examen</button>
+      <div id="mensaje-archivo"></div>
+    </section>
+
+    <!-- Sección del examen -->
+    <section id="zona-examen" class="oculta">
+      <h2>📝 Examen Personalizado</h2>
+      <div id="pregunta-texto"></div>
+      <div id="opciones"></div>
+      <button id="btn-siguiente" class="oculta">Siguiente pregunta →</button>
+    </section>
+
+    <!-- Sección del diagnóstico -->
+    <section id="zona-diagnostico" class="oculta">
+      <h2>📊 Diagnóstico</h2>
+      <div id="contenido-diagnostico"></div>
+      <button id="btn-reiniciar">🔄 Preparar otro examen</button>
+    </section>
+  </main>
+
+  <footer>
+    &copy; 2026 Aprendo Contigo — Proyecto de Erika Huallpa y Auria Mamani 
+  </footer>
+
+  <!-- Tu código → debe decir app.js -->
+  <script src="app.js"></script>
+</body>
+</html>
