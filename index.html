@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plataforma de Preparación de Exámenes</title>
+    
+    <!-- Librerías para leer PDF y Word -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
+    <script>
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+    </script>
+
+    <style>
+        :root {
+            /* 🎨 COLORES PASTELES */
+            --primario: #E8A87C;      /* melocotón suave */
+            --secundario: #85DCB8;    /* verde menta pastel */
+            --acento: #FFD3B6;        /* durazno claro */
+            --fondo: #FFF8F0;         /* crema muy suave */
+            --texto: #5D5B6A;         /* lila gris suave */
+            --correcto: #B5E48C;      /* verde pastel suave */
+            --incorrecto: #FFAAA5;    /* rosa pastel suave */
+            --blanco: #FFFAF5;
+            --borde: #F0E6DE;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--fondo);
+            color: var(--texto);
+            line-height: 1.6;
+            padding: 20px;
+            max-width: 900px;
+            margin: 0 auto;
+            min-height: 100vh;
+            overflow-y: auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 3px solid var(--primario);
+        }
+
+        h1 {
+            color: var(--primario);
+            font-size: 28px;
+        }
+
+        h2 {
+            color: var(--secundario);
+            margin-bottom: 15px;
+        }
+
+        .contenedor {
+            background: var(--blanco);
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 4px 15px rgba(232, 168, 124, 0.15);
+            margin-bottom: 25px;
+            border: 1px solid var(--borde);
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 8px 5px;
+        }
+
+        #btnCargar {
+            background-color: var(--secundario);
+            color: #3A7D63;
+        }
+
+        #btnGenerar {
+            background-color: var(--primario);
+            color: #ac6b4a;
+            font-size: 18px;
+            padding: 15px 30px;
+            width: 100%;
+        }
+
+        #btnSiguiente {
+            background-color: var(--acento);
+            color: #906040;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(232, 168, 124, 0.25);
+        }
+
+        input[type="file"] {
+            margin: 15px 0;
+            padding: 10px;
+            width: 100%;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid var(--borde);
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 15px;
+            border: 2px solid var(--borde);
+            border-radius: 12px;
+            font-size: 15px;
+            margin: 10px 0 20px 0;
+            resize: vertical;
+            background: white;
+        }
+
+        .opcion {
+            display: block;
+            padding: 12px;
+            margin: 8px 0;
+            border: 2px solid var(--borde);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            background: white;
+        }
+
+        .opcion:hover {
+            border-color: var(--secundario);
+            background-color: #F0FBF6;
+        }
+
+        /* Mensaje sin bloquear */
+        #mensaje {
+            display: none;
+            padding: 12px;
+            border-radius: 12px;
+            margin: 15px 0;
+            font-weight: bold;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        /* Ocultar secciones al inicio */
+        #seccionPreguntas, #seccionDiagnostico {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>📚 Plataforma de Preparación de Exámenes</h1>
+        <p>Sube tu documento o pega tu contenido → Genera preguntas → ¡Obtén tu diagnóstico!</p>
+    </header>
+
+    <!-- Mensaje sin bloquear pantalla -->
+    <div id="mensaje"></div>
+
+    <!-- Sección: Cargar documento -->
+    <div class="contenedor">
+        <h2>📂 Cargar Documento</h2>
+        <input type="file" id="archivo" accept=".txt,.pdf,.docx">
+        <br>
+        <button id="btnCargar">📂 Cargar Documento</button>
+
+        <p style="margin: 20px 0 10px 0; font-weight: bold;">O pega tu contenido aquí:</p>
+        <textarea id="areaTexto" placeholder="Pega tus apuntes, guía o contenido de estudio aquí..."></textarea>
+
+        <button id="btnGenerar">🧠 Analizar y Preparar Examen</button>
+    </div>
+
+    <!-- Sección: Examen -->
+    <div class="contenedor" id="seccionPreguntas">
+        <h2>📝 Examen</h2>
+        <div id="contenedorPregunta"></div>
+        <button id="btnSiguiente">Siguiente →</button>
+    </div>
+
+    <!-- Sección: Diagnóstico -->
+    <div class="contenedor" id="seccionDiagnostico"></div>
+
+    <!-- Enlace al JavaScript -->
+    <script src="app.js"></script>
+</body>
+</html>
